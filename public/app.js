@@ -11523,17 +11523,17 @@ var _page = require('page');
 
 var _page2 = _interopRequireDefault(_page);
 
-var _tvmazeApiClient = require('src/tvmaze-api-client');
+var _tvmazeApiClient = require('src/client/tvmaze-api-client');
 
-var _render = require('src/render');
+var _render = require('src/client/render');
 
 var _render2 = _interopRequireDefault(_render);
 
-var _tvShowsContainer = require('src/tv-shows-container');
+var _tvShowsContainer = require('src/client/tv-shows-container');
 
 var _tvShowsContainer2 = _interopRequireDefault(_tvShowsContainer);
 
-require('src/search-form');
+require('src/client/search-form');
 
 var _qs = require('qs');
 
@@ -11579,7 +11579,7 @@ if (productionEnv) {
 
 (0, _page2.default)();
 
-},{"jquery":2,"page":3,"qs":6,"src/render":11,"src/search-form":12,"src/tv-shows-container":13,"src/tvmaze-api-client":14}],11:[function(require,module,exports){
+},{"jquery":2,"page":3,"qs":6,"src/client/render":11,"src/client/search-form":12,"src/client/tv-shows-container":13,"src/client/tvmaze-api-client":14}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -11591,7 +11591,7 @@ var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _tvShowsContainer = require('src/tv-shows-container');
+var _tvShowsContainer = require('src/client/tv-shows-container');
 
 var _tvShowsContainer2 = _interopRequireDefault(_tvShowsContainer);
 
@@ -11615,7 +11615,7 @@ function renderShows() {
   });
 }
 
-},{"jquery":2,"src/tv-shows-container":13}],12:[function(require,module,exports){
+},{"jquery":2,"src/client/tv-shows-container":13}],12:[function(require,module,exports){
 'use strict';
 
 var _jquery = require('jquery');
