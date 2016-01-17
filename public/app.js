@@ -11601,14 +11601,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * Module Dependencies
  */
 
-var template = '<article class="tv-show">\n          <div class="left img-container">\n            <img src=":img:" alt=":img alt:">\n          </div>\n          <div class="right info">\n            <h1>:name:</h1>\n            <p>:summary:</p>\n            <button class="like">💖</button\n          </div>\n        </article>';
+var template = '<article class="tv-show">\n          <div class="left img-container">\n            <img src=":img:" alt=":img alt:">\n          </div>\n          <div class="right info">\n            <h1>:name:</h1>\n            <p>:summary:</p>\n            <button data-id=:id: class="like">💖</button\n          </div>\n        </article>';
 
 function renderShows() {
   var shows = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
 
   _tvShowsContainer2.default.find('.loader').remove();
   shows.forEach(function (show) {
-    var article = template.replace(':name:', show.name).replace(':img:', show.image ? show.image.medium : '').replace(':summary:', show.summary).replace(':img alt:', show.name + " Logo");
+    var article = template.replace(':name:', show.name).replace(':img:', show.image ? show.image.medium : '').replace(':summary:', show.summary).replace(':img alt:', show.name + " Logo").replace(':id:', show.id);
 
     var $article = (0, _jquery2.default)(article);
     _tvShowsContainer2.default.append($article.fadeIn(1500));
@@ -11659,7 +11659,10 @@ var $tvShowsContainer = (0, _jquery2.default)('#app-body').find('.tv-shows'); /*
 
 $tvShowsContainer.on('click', 'button.like', function (ev) {
   var $this = (0, _jquery2.default)(this);
-  $this.closest('.tv-show').toggleClass('liked');
+  var id = $this.data('id'); // data-id
+  _jquery2.default.post('/vote/' + id, function () {
+    $this.closest('.tv-show').toggleClass('liked');
+  });
 });
 
 exports.default = $tvShowsContainer;
