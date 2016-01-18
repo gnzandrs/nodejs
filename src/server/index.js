@@ -1,25 +1,23 @@
 import express from 'express'
 const app = express()
 
-const votes = {}
+import api from 'src/server/api'
+
+import mongoose from 'mongoose'
+mongoose.connect('mongodb://localhost/tvify')
 
 app.use(express.static('public'))
 
-// GET /votes
-app.get('/votes', (req, res) => {
-  res.json(votes)
+app.use('/api/votes', (req, res, next) => {
+	console.log('Middleware 1')
+	next()
 })
 
-// POST /vote/<id>
-app.post('/vote/:id', (req, res) => {
-  let id = req.params.id
-  if (votes[id] === undefined) {
-    votes[id] = 1
-  } else {  
-    votes[id] = votes[id] + 1
-  }
-
-  res.json({ votes: votes[id] })
+app.use('/api/votes', (req, res, next) => {
+	console.log('Middleware 2')
+	next()
 })
+
+app.use('/api', api)
 
 app.listen(3000, () => console.log('Servidor iniciado con Express escuchando en el puerto 3000') )
